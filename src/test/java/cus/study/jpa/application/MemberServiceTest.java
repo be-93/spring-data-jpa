@@ -24,13 +24,13 @@ class MemberServiceTest {
     @BeforeEach
     void setUp() {
         Team team = teamRepository.save(new Team("백엔드"));
-        memberRepository.save(new Member("최웅석", team));
+        memberRepository.save(new Member("devA", team));
     }
 
     @Test
     public void noConstructor() {
         // given
-        Member findMember = memberRepository.getByName("최웅석")
+        Member findMember = memberRepository.getByName("devA")
                 .orElseThrow(IllegalAccessError::new);
 
         // when
@@ -39,7 +39,7 @@ class MemberServiceTest {
         log.info("findMember Member.getName() : {}", findMember.getName());
         log.info("team team.getName() : {}", team.getName());
 
-        assertThat(findMember.getName()).isEqualTo("최웅석");
+        assertThat(findMember.getName()).isEqualTo("devA");
         assertThat(findMember.getTeam().getName()).isEqualTo("백엔드");
     }
 }
